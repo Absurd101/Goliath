@@ -3,7 +3,7 @@ echo ==============================
 echo  GOLIATH - Building exe...
 echo ==============================
 
-cd /d "C:\Users\cssko\Documents\TerrorZone Tracker"
+cd /d "C:\Users\cssko\Documents\TerrorZone Tracker\Goliath"
 
 echo Cleaning old build...
 rmdir /s /q build 2>nul
@@ -17,7 +17,7 @@ echo Copying new exe...
 copy /y "dist\Goliath.exe" "Goliath.exe"
 
 echo Updating desktop shortcut...
-powershell -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut([System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'Goliath.lnk')); $s.TargetPath = 'C:\Users\cssko\Documents\TerrorZone Tracker\Goliath.exe'; $s.IconLocation = 'C:\Users\cssko\Documents\TerrorZone Tracker\goliath.ico'; $s.Save()"
+powershell -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut([System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'Goliath.lnk')); $s.TargetPath = 'C:\Users\cssko\Documents\TerrorZone Tracker\Goliath\Goliath.exe'; $s.IconLocation = 'C:\Users\cssko\Documents\TerrorZone Tracker\Goliath\goliath.ico'; $s.Save()"
 
 echo ==============================
 echo  Done! Goliath.exe is ready.
