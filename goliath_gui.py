@@ -716,19 +716,25 @@ class GoliathApp:
                     break
 
             if progress is not None:
+                # Always update display regardless of threshold
                 self.root.after(0, self.dclone_label.config,
                                 {"text": DCLONE_LEVELS.get(progress, str(progress) + "/6")})
                 self.root.after(0, self._draw_progress, progress)
                 self._log("Dclone: " + str(progress) + "/6 - " + message)
 
                 threshold = self.config["dclone_threshold"]
+
+                # Reset dedup if progress dropped (new spawn cycle started)
+                if progress < self.last_dclone_progress:
+                    self._log("Dclone reset detected - new cycle started.")
+                    self.last_dclone_progress = 0
+
+                # Alert if threshold reached and not already alerted this level
                 if progress >= threshold and progress != self.last_dclone_progress:
                     self._send_dclone_alert(progress)
                     self.last_dclone_progress = progress
                     self.root.after(0, self.last_alert_label.config,
                                     {"text": "[DCLONE] " + str(progress) + "/6 - " + datetime.now().strftime("%H:%M")})
-                elif progress < threshold:
-                    self.last_dclone_progress = 0
 
         except Exception as exc:
             self._log("Dclone error: " + str(exc))
