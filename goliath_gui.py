@@ -715,8 +715,10 @@ class GoliathApp:
                     message = server.get("message", "")
                     break
 
-            # Log full raw response for debugging
-            self._log("Dclone raw: " + str(data)[:300])
+            # Log all server names for debugging
+            server_names = [s.get("server") for s in data.get("servers", [])]
+            self._log("Dclone servers: " + str(server_names))
+            self._log("Dclone looking for: " + self.config["dclone_server"])
 
             if progress is not None:
                 # Always update display regardless of threshold
