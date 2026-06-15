@@ -107,7 +107,7 @@ DCLONE_LEVELS = {
 }
 
 TZ_API_URL = "https://d2runewizard.com/api/trackers/terror-zone"
-DCLONE_API_URL = "https://d2runewizard.com/api/diablo-clone-progress"
+DCLONE_API_URL = "https://d2runewizard.com/api/diablo-clone-progress/all"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0",
