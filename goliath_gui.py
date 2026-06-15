@@ -715,6 +715,9 @@ class GoliathApp:
                     message = server.get("message", "")
                     break
 
+            # Log full raw response for debugging
+            self._log("Dclone raw: " + str(data)[:300])
+
             if progress is not None:
                 # Always update display regardless of threshold
                 self.root.after(0, self.dclone_label.config,
