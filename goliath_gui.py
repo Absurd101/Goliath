@@ -43,7 +43,7 @@ DEFAULT_CONFIG = {
     "webhook": "https://discord.com/api/webhooks/1507676709774954668/naiVpgRanu3tx6EXoFxjEdiJMovahkw2PqHhzYjdqNWdAcKUCs6YxK0xXkSX-A5lUZ4I",
     "poll_interval": 300,
     "dclone_threshold": 5,
-    "dclone_server": "ladderSoftcoreEurope",
+    "dclone_server": "nonLadderSoftcoreEurope",
     "watchlist": [
         "Cathedral and Catacombs",
         "The Pit",
@@ -715,10 +715,7 @@ class GoliathApp:
                     message = server.get("message", "")
                     break
 
-            # Log all server names for debugging
-            server_names = [s.get("server") for s in data.get("servers", [])]
-            self._log("Dclone servers: " + str(server_names))
-            self._log("Dclone looking for: " + self.config["dclone_server"])
+
 
             if progress is not None:
                 # Always update display regardless of threshold
