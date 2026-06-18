@@ -106,7 +106,7 @@ DCLONE_LEVELS = {
     6: "6/6 - DIABLO WALKS THE EARTH",
 }
 
-TZ_API_URL = "https://d2runewizard.com/api/terror-zone"
+TZ_API_URL = "https://d2runewizard.com/api/trackers/terror-zone"
 DCLONE_API_URL = "https://d2runewizard.com/api/diablo-clone-progress/all"
 
 HEADERS = {
@@ -114,6 +114,8 @@ HEADERS = {
     "D2R-Contact": "goliath-notifier",
     "D2R-Platform": "Discord",
     "D2R-Repo": "Personal private bot, local PC use only",
+    "Accept": "application/json",
+    "Accept-Encoding": "identity",
 }
 
 # Diablo theme colors
@@ -674,10 +676,8 @@ class GoliathApp:
             resp = requests.get(TZ_API_URL, headers=HEADERS, timeout=15)
             resp.raise_for_status()
             data = resp.json()
-            tz = data.get("terrorZone", {})
-            current = tz.get("highestProbabilityZone", {}).get("zone", "unknown")
-            next_tz = tz.get("nextZone", {})
-            next_zone = next_tz.get("highestProbabilityZone", {}).get("zone", "unknown") if next_tz else "unknown"
+            current = data.get("current", "unknown")
+            next_zone = data.get("next", "unknown")
 
             self.root.after(0, self.current_tz_label.config, {"text": current})
             self.root.after(0, self.next_tz_label.config, {"text": next_zone})
