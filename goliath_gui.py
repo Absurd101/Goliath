@@ -674,10 +674,15 @@ class GoliathApp:
     def _check_tz(self):
         try:
             resp = requests.get(TZ_API_URL, headers=HEADERS, timeout=15)
-            self._log("TZ status: " + str(resp.status_code))
-            self._log("TZ response: " + resp.text[:300])
             resp.raise_for_status()
-            data = resp.json()
+            # Force decode gzip if needed
+            import gzip
+            try:
+                raw = gzip.decompress(resp.content)
+                data = __import__("json").loads(raw)
+            except Exception:
+                data = resp.json()
+            self._log("TZ raw: " + str(data)[:300])
             current = data.get("current", "unknown")
             next_zone = data.get("next", "unknown")
 
