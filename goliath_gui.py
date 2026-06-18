@@ -43,7 +43,7 @@ DEFAULT_CONFIG = {
     "webhook": "https://discord.com/api/webhooks/1507676709774954668/naiVpgRanu3tx6EXoFxjEdiJMovahkw2PqHhzYjdqNWdAcKUCs6YxK0xXkSX-A5lUZ4I",
     "poll_interval": 300,
     "dclone_threshold": 5,
-    "dclone_server": "nonLadderSoftcoreEurope",
+    "dclone_server": "nonLadderSoftcoreEuropeRotw",
     "watchlist": [
         "Cathedral and Catacombs",
         "The Pit",
