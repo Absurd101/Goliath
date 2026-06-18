@@ -114,8 +114,6 @@ HEADERS = {
     "D2R-Contact": "goliath-notifier",
     "D2R-Platform": "Discord",
     "D2R-Repo": "Personal private bot, local PC use only",
-    "Accept": "application/json",
-    "Accept-Encoding": "identity",
 }
 
 # Diablo theme colors
@@ -675,14 +673,7 @@ class GoliathApp:
         try:
             resp = requests.get(TZ_API_URL, headers=HEADERS, timeout=15)
             resp.raise_for_status()
-            # Force decode gzip if needed
-            import gzip
-            try:
-                raw = gzip.decompress(resp.content)
-                data = __import__("json").loads(raw)
-            except Exception:
-                data = resp.json()
-            self._log("TZ raw: " + str(data)[:300])
+            data = resp.json()
             current = data.get("current", "unknown")
             next_zone = data.get("next", "unknown")
 
