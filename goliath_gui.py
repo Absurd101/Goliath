@@ -674,6 +674,8 @@ class GoliathApp:
     def _check_tz(self):
         try:
             resp = requests.get(TZ_API_URL, headers=HEADERS, timeout=15)
+            self._log("TZ status: " + str(resp.status_code))
+            self._log("TZ response: " + resp.text[:300])
             resp.raise_for_status()
             data = resp.json()
             current = data.get("current", "unknown")
